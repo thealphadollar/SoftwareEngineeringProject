@@ -8,6 +8,7 @@ package data_entry;
 import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
+import java.lang.*;
 /**
  *
  * @author kanishk
@@ -16,9 +17,9 @@ public class Admin {
     String Name;
     
     
-    private static final String rootUsername="root";
-    private static final String rootPassword="iit2017";
-    private static final String conn_string="jdbc:mysql://localhost:3306/demodb";
+    private static final String rootUsername=System.getenv("SE_SQL_USER");
+    private static final String rootPassword=System.getenv("SE_SQL_PASS");
+    private static final String conn_string=System.getenv("SE_SQL_CONN");
     
     private Connection conn=null;
     void add_column(String col_name,String table,String type)

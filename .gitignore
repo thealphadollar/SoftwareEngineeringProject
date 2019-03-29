@@ -103,3 +103,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 .~lock.P18_17CS30033_17CS30018_RAS_FS.docx#
+src/nbproject
+src/nbproject/*
+src/nbproject/**
+nbproject/

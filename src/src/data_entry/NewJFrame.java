@@ -21,9 +21,9 @@ public class NewJFrame extends javax.swing.JFrame {
     private String username;
     private String password;
     private String usertype;
-    private static final String rootUsername="root";
-    private static final String rootPassword="iit2017";
-    private static final String conn_string="jdbc:mysql://localhost:3306/demodb";
+    private static final String rootUsername=System.getenv("SE_SQL_USER");
+    private static final String rootPassword=System.getenv("SE_SQL_PASS");
+    private static final String conn_string=System.getenv("SE_SQL_CONN");
     private Connection conn;
     /**
      * This method is called from within the constructor to initialize the form.
