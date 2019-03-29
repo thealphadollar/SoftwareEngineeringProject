@@ -8,6 +8,7 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.*;
 /**
  *
  * @author kanishk
@@ -17,6 +18,8 @@ public class USER_GUI extends javax.swing.JFrame{
     public USER_GUI()
     {
         initComponents();
+        this.setSize(300,100);
+        this.setVisible(true);
     }
     private String username;
     private String password;
@@ -86,31 +89,30 @@ public class USER_GUI extends javax.swing.JFrame{
                 
                  conn=DriverManager.getConnection(conn_string,rootUsername,rootPassword);
                  Statement st=(Statement)conn.createStatement();
-                 String query="Students";//"SELECT DataTable FROM USERS WHERE Username='"+this.username+"' AND Password='"+this.password+"'";
-                 //ResultSet rs=st.executeQuery(query);
+                 String query="Students";
                  Table User_data=new Table(query);
                  int num_labels=User_data.col;
                  for(int i=0;i<num_labels;++i)
                  {
-                     String text=jLabel[i].getText();
+                     String text=jtexts[i].getText();
                      String col_name=User_data.Col_name[i];
-                    // String query2="INSERT INTO query +"(col_name) + " VALUES "+(text)+";";
-                     String query2="update Students set "+col_name+"="+text+";";
-                     st.executeQuery(query2);
+                     
+                     System.out.println(col_name+" "+text);
+                     String sql ="UPDATE Students SET "+col_name+"="+text+";";
+                     int rs=st.executeUpdate(sql);
+                     System.out.println(rs);
                  }
          }
          catch(SQLException e)
          {
-             System.out.println(e);
+             System.out.println("MIND_Fuck_HelpME   "+e);
          }
     } 
     public static void main(String args[])
     {
 
       try{
-             USER_GUI frame=new USER_GUI();
-            frame.setSize(300,100);
-            frame.setVisible(true);
+            USER_GUI frame=new USER_GUI();
          }
          catch(Exception e){
         }
