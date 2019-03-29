@@ -12,7 +12,7 @@ package data_entry;
 import java.sql.*;
 public class Table {
     String Table_name;
-    private int col;
+    int col;
     String[] Col_name;
     String[] Data_type;
     
@@ -40,6 +40,7 @@ public class Table {
                      this.Col_name[i]=rsmd.getColumnName(i+1);
                      this.Data_type[i]=rsmd.getColumnTypeName(i+1);
                  }
+                 this.show();
                 
            }
         catch(Exception e)
