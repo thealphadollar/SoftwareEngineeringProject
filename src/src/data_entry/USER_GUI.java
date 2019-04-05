@@ -18,7 +18,7 @@ public class USER_GUI extends javax.swing.JFrame{
     public USER_GUI()
     {
         initComponents();
-        this.setSize(300,100);
+        this.setSize(1000,500);
         this.setVisible(true);
     }
     private String username;
@@ -34,7 +34,6 @@ public class USER_GUI extends javax.swing.JFrame{
     private javax.swing.JButton submit;
 
     
-    
     private void initComponents()
     {
              this.conn=null;
@@ -49,7 +48,7 @@ public class USER_GUI extends javax.swing.JFrame{
                  Table User_data=new Table(query);
                  int num_labels=User_data.col;
                  setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-                 jPanel1 = new javax.swing.JPanel(new GridLayout(4,1));
+                 jPanel1 = new javax.swing.JPanel(new GridLayout(num_labels+1,1));
                  //jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "WELCOME_MY_USER", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Liberation Sans", 1, 14))); // NOI18N
                  add(jPanel1,BorderLayout.CENTER);
                  setTitle("Welcome_my_user");
@@ -98,7 +97,7 @@ public class USER_GUI extends javax.swing.JFrame{
                      String col_name=User_data.Col_name[i];
                      
                      System.out.println(col_name+" "+text);
-                     String sql ="UPDATE Students SET "+col_name+"="+text+";";
+                     String sql ="UPDATE Students SET"+col_name+"="+text+";";
                      int rs=st.executeUpdate(sql);
                      System.out.println(rs);
                  }

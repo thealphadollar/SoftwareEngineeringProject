@@ -13,9 +13,9 @@ import java.sql.*;
 public class Table {
     String Table_name;
     int col;
+    int row;
     String[] Col_name;
     String[] Data_type;
-    
     private static final String rootUsername="root";
     private static final String rootPassword="iit2017";
     private static final String conn_string="jdbc:mysql://localhost:3306/demodb";
@@ -30,6 +30,11 @@ public class Table {
                  Statement st=(Statement)conn.createStatement();
                  String query="SELECT * FROM "+this.Table_name;
                  ResultSet rs=st.executeQuery(query);
+                 this.row=0;
+                 while(rs.next())
+                 {
+                     ++row;
+                 }
                  //Do the query where the desired table name exists
                  ResultSetMetaData rsmd = rs.getMetaData();
                  this.col = rsmd.getColumnCount();

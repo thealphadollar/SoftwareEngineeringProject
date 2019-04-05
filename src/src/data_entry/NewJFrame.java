@@ -9,8 +9,10 @@ package data_entry;
  *
  * @author kanishk
  */
-
 import java.sql.*;
+import javax.swing.*;
+import java.awt.*;
+import java.lang.*;
 public class NewJFrame extends javax.swing.JFrame {
 
     /**
@@ -18,13 +20,16 @@ public class NewJFrame extends javax.swing.JFrame {
      */
     public NewJFrame() {
         initComponents();
+      /*  ImageIcon icon=new ImageIcon("background.jpeg");
+        JLabel pic=new JLabel(icon);
+        jPanel1.add(pic);*/
     }
     private String username;
     private String password;
     private String usertype;
-    private static final String rootUsername=System.getenv("SE_SQL_USER");
-    private static final String rootPassword=System.getenv("SE_SQL_PASS");
-    private static final String conn_string=System.getenv("SE_SQL_CONN");
+    private static final String rootUsername="root";//System.getenv("SE_SQL_USER");
+    private static final String rootPassword="iit2017";//System.getenv("SE_SQL_PASS");
+    private static final String conn_string= "jdbc:mysql://localhost:3306/demodb";//System.getenv("SE_SQL_CONN");
     private Connection conn;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,7 +128,7 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -150,7 +155,7 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,15 +172,11 @@ public class NewJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -186,10 +187,13 @@ public class NewJFrame extends javax.swing.JFrame {
          this.password=String.valueOf(pass.getPassword());
          this.usertype=(String)user_type.getSelectedItem();
          this.conn=null;
-         
+    /*    ImageIcon icon=new ImageIcon("background.jpeg");
+        JLabel pic=new JLabel(icon);
+        jPanel1.add(pic);
+    */     
          try{
                 conn=DriverManager.getConnection(conn_string,rootUsername,rootPassword);
-                if(usertype=="Admin")
+                if(usertype=="User")
                 {
                     Statement st=(Statement)conn.createStatement();
                     String query="SELECT * FROM USERS WHERE username='"+this.username+"' AND password='"+this.password+"'";
@@ -199,12 +203,30 @@ public class NewJFrame extends javax.swing.JFrame {
                     }
                     else
                     {
-                        System.out.println("First login successful");
+                         System.out.println("First login successful");
+                         USER_GUI frame=new USER_GUI();
+                         this.setVisible(false);
+                         this.dispose();
                     }
+                    
                 }
-                else
+                else if(usertype=="Admin")
                 {
-                    System.out.println("User's GUI has yet to be created");
+                    //System.out.println("User's GUI has yet to be created");
+                    Statement st=(Statement)conn.createStatement();
+                    String query="SELECT * FROM USERS WHERE username='"+this.username+"' AND password='"+this.password+"'";
+                     ResultSet rs=st.executeQuery(query);
+                    if(!rs.next())
+                    {
+                        javax.swing.JOptionPane.showMessageDialog(getContentPane(),"Invalid username,password or usertype");
+                    }
+                    else
+                    {
+                        System.out.println("First login successful");
+                        Admin_gui frame=new Admin_gui();
+                        this.setVisible(false);
+                        this.dispose();
+                    }
                 }
          }
          catch(SQLException e)
@@ -228,6 +250,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        New_user_registration user=new New_user_registration(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -256,7 +279,7 @@ public class NewJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
