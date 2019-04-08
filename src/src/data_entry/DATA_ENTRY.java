@@ -35,7 +35,7 @@ public class DATA_ENTRY {
                    catch (Exception e) { /* ignore close errors */ }
                 }
                     }
-                 new NewJFrame().setVisible(true);
+                 new login().setVisible(true);
     }
     
 }

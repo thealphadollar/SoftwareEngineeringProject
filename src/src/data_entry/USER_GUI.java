@@ -18,7 +18,7 @@ public class USER_GUI extends javax.swing.JFrame{
     public USER_GUI()
     {
         initComponents();
-        this.setSize(1000,500);
+        this.setSize(500,360);
         this.setVisible(true);
     }
     private String username;
@@ -29,8 +29,8 @@ public class USER_GUI extends javax.swing.JFrame{
     private static final String conn_string="jdbc:mysql://localhost:3306/demodb";
     private Connection conn;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel[] jLabel=new javax.swing.JLabel[6];
-    private javax.swing.JTextField[] jtexts=new javax.swing.JTextField[6];
+    private javax.swing.JLabel[] jLabel=new javax.swing.JLabel[12];
+    private javax.swing.JTextField[] jtexts=new javax.swing.JTextField[12];
     private javax.swing.JButton submit;
 
     
@@ -49,15 +49,21 @@ public class USER_GUI extends javax.swing.JFrame{
                  int num_labels=User_data.col;
                  setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                  jPanel1 = new javax.swing.JPanel(new GridLayout(num_labels+1,1));
+                  jPanel1.setBackground(new java.awt.Color(52, 73, 94));
+                 
                  //jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "WELCOME_MY_USER", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Liberation Sans", 1, 14))); // NOI18N
                  add(jPanel1,BorderLayout.CENTER);
                  setTitle("Welcome_my_user");
-                 for(int i=0;i<num_labels;++i)
+                 for(int i=0;i<3;++i)
                  {  
                      jLabel[i]=new javax.swing.JLabel();
                      jtexts[i]=new javax.swing.JTextField();
                      jLabel[i].setText(User_data.Col_name[i]);
                      jLabel[i].setFont(new java.awt.Font("Liberation Sans",1, 12)); // NOI18N
+                     jLabel[i].setSize(1,1);
+                     //jLabel[i].setHorizontalAlignment(50);
+                     //jLabel[i].setVerticalAlignment(20*i+20);
+                     jtexts[i].setSize(1,1);
                      jPanel1.add(jLabel[i]);  
                      jPanel1.add(jtexts[i]);
                  }
@@ -101,6 +107,9 @@ public class USER_GUI extends javax.swing.JFrame{
                      int rs=st.executeUpdate(sql);
                      System.out.println(rs);
                  }
+                 this.setVisible(false);
+                 this.dispose();
+                 new login().setVisible(true);
          }
          catch(SQLException e)
          {
