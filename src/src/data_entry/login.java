@@ -119,7 +119,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jLabel1.setForeground(java.awt.Color.black);
-        jLabel1.setText("WELCOME TO DATA ENTRY SYSTEM");
+        jLabel1.setText("WELCOME TO DATA-EASE");
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
         jLabel2.setForeground(java.awt.Color.black);

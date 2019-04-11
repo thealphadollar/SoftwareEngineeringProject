@@ -52,12 +52,15 @@ public class USER_GUI extends javax.swing.JFrame{
                  //jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "WELCOME_MY_USER", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Liberation Sans", 1, 14))); // NOI18N
                  add(jPanel1,BorderLayout.CENTER);
                  setTitle("Welcome_my_user");
+                 //Dimension d=new java.awt.Dimension(10);
                  for(int i=0;i<num_labels;++i)
                  {  
                      jLabel[i]=new javax.swing.JLabel();
                      jtexts[i]=new javax.swing.JTextField();
                      jLabel[i].setText(User_data.Col_name[i]);
                      jLabel[i].setFont(new java.awt.Font("Liberation Sans",1, 12)); // NOI18N
+                     //jLabel[i].setHorizontalAlignment(25);
+                     //jLabel[i].setHorizontalTextPosition(25);
                      jPanel1.add(jLabel[i]);  
                      jPanel1.add(jtexts[i]);
                  }

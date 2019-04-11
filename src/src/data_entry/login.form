@@ -233,7 +233,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" id="black" palette="1" red="0" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="WELCOME TO DATA ENTRY SYSTEM"/>
+            <Property name="text" type="java.lang.String" value="WELCOME TO DATA-EASE"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

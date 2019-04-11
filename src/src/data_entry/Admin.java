@@ -82,7 +82,7 @@ public class Admin {
                               return 0;
                           }
                           
-                          if(table=="Pending_Requests")
+         /*                 if(table=="Pending_Requests")
                           {
                             String sql = "INSERT INTO "+table+"(Name,username,password)"+"VALUES('"+nam+"','"+user+"','"+pass+"');";
                             //System.out.println(sql);
@@ -94,12 +94,13 @@ public class Admin {
                             String sql = "INSERT INTO "+table+"(username,password)"+"VALUES('"+user+"','"+pass+"');";
                             //System.out.println(sql);
                             int rs=st.executeUpdate(sql);
-                          }
+                          }*/
                           return 1;
         }
         catch(SQLException e)
         {
             System.out.println(e);
+            return(0);
         }
     }
     void delete(String table,String name)
