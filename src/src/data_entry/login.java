@@ -61,9 +61,9 @@ public class login extends javax.swing.JFrame {
         setBackground(new java.awt.Color(52, 73, 94));
         setSize(new java.awt.Dimension(0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(107, 185, 240));
+        jPanel1.setBackground(new java.awt.Color(25, 181, 254));
 
-        jPanel3.setBackground(new java.awt.Color(52, 73, 94));
+        jPanel3.setBackground(new java.awt.Color(36, 37, 42));
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         jLabel6.setForeground(java.awt.Color.white);
@@ -117,6 +117,7 @@ public class login extends javax.swing.JFrame {
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
+        jLabel1.setBackground(new java.awt.Color(25, 181, 254));
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jLabel1.setForeground(java.awt.Color.black);
         jLabel1.setText("WELCOME TO DATA-EASE");
