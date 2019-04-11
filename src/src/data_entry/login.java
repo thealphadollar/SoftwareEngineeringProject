@@ -44,7 +44,7 @@ public class login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        reg_type = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -59,7 +59,6 @@ public class login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(52, 73, 94));
-        setPreferredSize(new java.awt.Dimension(0, 0));
         setSize(new java.awt.Dimension(0, 0));
 
         jPanel1.setBackground(new java.awt.Color(107, 185, 240));
@@ -70,8 +69,8 @@ public class login extends javax.swing.JFrame {
         jLabel6.setForeground(java.awt.Color.white);
         jLabel6.setText("NEW USER?");
 
-        jComboBox2.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "User" }));
+        reg_type.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
+        reg_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "User" }));
 
         jButton2.setBackground(new java.awt.Color(107, 185, 240));
         jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
@@ -96,7 +95,7 @@ public class login extends javax.swing.JFrame {
                         .addGap(0, 20, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reg_type, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
@@ -112,7 +111,7 @@ public class login extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reg_type, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addContainerGap(86, Short.MAX_VALUE))
@@ -240,7 +239,11 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        New_user_registration user=new New_user_registration(); 
+        if ((String)reg_type.getSelectedItem() == "User"){
+            New_user_registration user=new New_user_registration();
+        } else {
+            admin_reg adm = new admin_reg();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -268,8 +271,7 @@ public class login extends javax.swing.JFrame {
                          USER_GUI frame=new USER_GUI();
                          this.setVisible(false);
                          this.dispose();
-                    }
-                    
+                    }   
                 }
                 else if(usertype=="Administrator")
                 {
@@ -334,7 +336,6 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -345,6 +346,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField pass;
+    private javax.swing.JComboBox<String> reg_type;
     private javax.swing.JTextField user;
     private javax.swing.JComboBox<String> user_type;
     // End of variables declaration//GEN-END:variables

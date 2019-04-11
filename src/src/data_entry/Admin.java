@@ -63,6 +63,45 @@ public class Admin {
             System.out.println(e);
         }
     }
+    Integer add_new(String table,String user,String pass)
+    {
+ 
+        try{
+                          conn= DriverManager.getConnection(conn_string, rootUsername, rootPassword);
+                          Statement st=(Statement)conn.createStatement();
+                          
+                          String query="select * from "+table+";";
+                          ResultSet r_size=st.executeQuery(query);
+                          int size = 0;
+                          if (r_size!=null){
+                              r_size.last();
+                              size = r_size.getRow();
+                          }
+                          
+                          if (size>=1){
+                              return 0;
+                          }
+                          
+                          if(table=="Pending_Requests")
+                          {
+                            String sql = "INSERT INTO "+table+"(Name,username,password)"+"VALUES('"+nam+"','"+user+"','"+pass+"');";
+                            //System.out.println(sql);
+                            int rs=st.executeUpdate(sql);
+  
+                          }
+                          else
+                          {
+                            String sql = "INSERT INTO "+table+"(username,password)"+"VALUES('"+user+"','"+pass+"');";
+                            //System.out.println(sql);
+                            int rs=st.executeUpdate(sql);
+                          }
+                          return 1;
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }
+    }
     void delete(String table,String name)
     {
          String sql = "delete from Pending_Requests where Name='"+name+"';";
