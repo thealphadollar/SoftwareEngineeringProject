@@ -16,7 +16,7 @@ import java.lang.*;
 public class Admin_gui extends javax.swing.JFrame {
 
     /**
-     * Creates new form Admin_GUI
+     * Creates new form Admin_gui
      */
     private String username;
     private String password;
@@ -27,10 +27,71 @@ public class Admin_gui extends javax.swing.JFrame {
     private Connection conn;
     private Admin admin=new Admin();
     public Admin_gui() {
-        System.out.println("We are here");
+        System.out.println("We are here from admin_gui");
         this.setVisible(true);
         initComponents();
         
+    }
+    void list_reset()
+    {
+        int count=0;
+        int i=0;
+        String[] table_name=new String[10];
+        try{
+                conn=DriverManager.getConnection(conn_string,rootUsername,rootPassword);
+                Statement st=(Statement)conn.createStatement();
+                String query="SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'demodb'";
+                ResultSet rs=st.executeQuery(query);
+                rs.next();
+                count=(rs.getInt(1));
+                query="SELECT table_name FROM information_schema.tables WHERE table_type = 'base table' AND table_schema='demodb';";
+                rs=st.executeQuery(query);
+               
+                while(rs.next())
+                {
+                 table_name[i]=rs.getString(1);
+                 //System.out.println(table_name[i]);
+                 ++i;
+                }
+                
+         }
+         catch(Exception e)
+         {
+             System.out.println(e);
+         }
+        final int Count=count;
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return Count; }
+            public String getElementAt(int i) { return table_name[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+        count=0;i=0;
+        String[] pending=new String[10];
+        try{
+                conn=DriverManager.getConnection(conn_string+"/demodb",rootUsername,rootPassword);
+                Statement st=(Statement)conn.createStatement();
+                String query="SELECT * FROM  Pending_Requests";
+                ResultSet rs=st.executeQuery(query);
+                while(rs.next())
+                {
+                 pending[i]=rs.getString(1);
+                 //System.out.println(table_name[i]);
+                 ++i;
+                }
+                count=i;
+                
+         }
+         catch(Exception e)
+         {
+             System.out.println(e);
+         }
+         final int Count2=count;
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+
+            public int getSize() { return Count2; }
+            public String getElementAt(int i) { return pending[i]; }
+        });
+        jScrollPane2.setViewportView(jList2);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,37 +127,7 @@ public class Admin_gui extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jLabel1.setText("Current Datatables");
-        int count=0;
-        int i=0;
-        String[] table_name=new String[10];
-        try{
-                conn=DriverManager.getConnection(conn_string,rootUsername,rootPassword);
-                Statement st=(Statement)conn.createStatement();
-                String query="SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'demodb'";
-                ResultSet rs=st.executeQuery(query);
-                rs.next();
-                count=(rs.getInt(1));
-                query="SELECT table_name FROM information_schema.tables WHERE table_type = 'base table' AND table_schema='demodb';";
-                rs=st.executeQuery(query);
-               
-                while(rs.next())
-                {
-                 table_name[i]=rs.getString(1);
-                 System.out.println(table_name[i]);
-                 ++i;
-                }
-                
-         }
-         catch(Exception e)
-         {
-             System.out.println(e);
-         }
-        final int Count=count;
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            public int getSize() { return Count; }
-            public String getElementAt(int i) { return table_name[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+
 
         add_col.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
         add_col.setText("Add Column");
@@ -123,32 +154,7 @@ public class Admin_gui extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        count=0;i=0;
-        String[] pending=new String[10];
-        try{
-                conn=DriverManager.getConnection(conn_string+"/demodb",rootUsername,rootPassword);
-                Statement st=(Statement)conn.createStatement();
-                String query="SELECT * FROM  Pending_Requests";
-                ResultSet rs=st.executeQuery(query);
-                while(rs.next())
-                {
-                 pending[i]=rs.getString(1);
-                 //System.out.println(table_name[i]);
-                 ++i;
-                }
-                count=i;
-                
-         }
-         catch(Exception e)
-         {
-             System.out.println(e);
-         }
-         final int Count2=count;
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-
-            public int getSize() { return Count2; }
-            public String getElementAt(int i) { return pending[i]; }
-        });
+        this.list_reset();
         jScrollPane2.setViewportView(jList2);
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
@@ -277,11 +283,15 @@ public class Admin_gui extends javax.swing.JFrame {
         }        
         admin.add_row("USERS", data[0], data[1], "");
         admin.delete("Pending_Requests",a);
+        this.list_reset();
+        
     }                                        
 
     private void add_colActionPerformed(java.awt.event.ActionEvent evt) {                                         
         String a=jList1.getSelectedValue().toString();
         add_column add=new add_column(a);
+        this.setVisible(false);
+        this.dispose();
                 
     }                                        
 
@@ -289,14 +299,14 @@ public class Admin_gui extends javax.swing.JFrame {
         // TODO add your handling code here:
         String a = jList1.getSelectedValue().toString();
         admin.view_table(a);
-        this.initComponents();
+        this.list_reset();
     }                                        
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         String a = jList1.getSelectedValue().toString();
         admin.drop_table(a);
-        this.initComponents();
+        this.list_reset();
     }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         

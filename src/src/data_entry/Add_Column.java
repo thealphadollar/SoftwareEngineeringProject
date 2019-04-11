@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package data_entry;
-import java.sql.*;
 /**
  *
  * @author kanishk
@@ -22,10 +21,6 @@ public class Add_Column extends javax.swing.JFrame {
     }
     private String col_name;
     private String data_type;
-    private static final String rootUsername="root";//System.getenv("SE_SQL_USER");
-    private static final String rootPassword="iit2017";//System.getenv("SE_SQL_PASS");
-    private static final String conn_string= "jdbc:mysql://localhost:3306/demodb";//System.getenv("SE_SQL_CONN");
-    private Connection conn;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,9 +133,13 @@ public class Add_Column extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          this.col_name=jTextField2.getText();
          this.data_type=(String)jComboBox1.getSelectedItem();
-         this.conn=null;
          Admin a=new Admin();
+         System.out.println("I am before to the step required");
          a.add_column(col_name, Table_name, data_type);
+         System.out.println("I am back to add_column gui");
+         this.setVisible(false);
+         this.dispose();
+         Admin_gui t=new Admin_gui();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

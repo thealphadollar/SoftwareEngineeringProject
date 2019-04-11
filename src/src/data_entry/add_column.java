@@ -142,6 +142,9 @@ public class add_column extends javax.swing.JFrame {
          System.out.println(this.col_name+" "+this.data_type);
          Admin a=new Admin();
          a.add_column(this.col_name,this.Table_name, this.data_type);
+         this.setVisible(false);
+         this.dispose();
+         new Admin_gui();
     }                                        
 
     /**

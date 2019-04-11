@@ -29,9 +29,9 @@ public class Admin {
                          
                           conn= DriverManager.getConnection(conn_string, rootUsername, rootPassword);
                           Statement st=(Statement) conn.createStatement();
-                          System.out.println("Entered into admin");
+                          //System.out.println("Entered into admin");
                           int n = st.executeUpdate("ALTER TABLE "+table+" ADD "+col_name+" "+type);
-                          System.out.println("Query OK, "+n+" rows affected");
+                         // System.out.println("Query OK, "+n+" rows affected");
                        }
                     catch(SQLException e)
                     {
@@ -47,14 +47,14 @@ public class Admin {
                           if(table=="Pending_Requests")
                           {
                             String sql = "INSERT INTO "+table+"(Name,username,password)"+"VALUES('"+nam+"','"+user+"','"+pass+"');";
-                            System.out.println(sql);
+                            //System.out.println(sql);
                             int rs=st.executeUpdate(sql);
   
                           }
                           else
                           {
                             String sql = "INSERT INTO "+table+"(username,password)"+"VALUES('"+user+"','"+pass+"');";
-                            System.out.println(sql);
+                            //System.out.println(sql);
                             int rs=st.executeUpdate(sql);
                           }
         }
@@ -70,7 +70,7 @@ public class Admin {
                           conn= DriverManager.getConnection(conn_string, rootUsername, rootPassword);
                           Statement st=(Statement) conn.createStatement();
                          // String query="drop table "+table+";";
-                          System.out.println("I am inside delete table");
+                         // System.out.println("I am inside delete table");
                           st.executeUpdate(sql);
                     }
                     catch(SQLException e)
@@ -84,7 +84,7 @@ public class Admin {
                           conn= DriverManager.getConnection(conn_string, rootUsername, rootPassword);
                           Statement st=(Statement) conn.createStatement();
                           String query="drop table "+table+";";
-                          System.out.println("I am inside drop table");
+                          //System.out.println("I am inside drop table");
                           st.executeUpdate(query);
                     }
                     catch(SQLException e)
@@ -125,7 +125,7 @@ public class Admin {
                           
                           f.add(scroll);
                           f.setVisible(true);
-                          f.setSize(400,300);
+                          f.setSize(600,400);
             }
             catch(SQLException e)
             {
