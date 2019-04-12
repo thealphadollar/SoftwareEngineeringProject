@@ -3,7 +3,7 @@ Project under Prof. Debasis Samanta for Software Enginnering Lab: Data Entry Sys
 
 ## Presentation
 
-The included presentation contains most of the details of the project; the aim, motivation and the technologies used. Please have a look at it for brief view.
+The included [presentation](https://docs.google.com/presentation/d/1L4vQjprS5gTK5wKBfh6PIdkHpLyO9mQv8Hg3CPRgbp8/edit?usp=sharing) contains most of the details of the project; the aim, motivation and the technologies used. Please have a look at it for brief view.
 
 ## Team
 
