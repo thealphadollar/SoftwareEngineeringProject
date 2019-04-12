@@ -208,7 +208,7 @@ public class admin_page extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jLabel5.setForeground(java.awt.Color.white);
-        jLabel5.setText("WELCOME ADMIN _/\\_");
+        jLabel5.setText("WELCOME ADMIN ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -328,6 +328,14 @@ public class admin_page extends javax.swing.JFrame {
     private void approveActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
          String a=jList2.getSelectedValue().toString();
+         String b=jList1.getSelectedValue().toString();
+         Table t1=new Table(b);
+         String[] A=new String[t1.col];
+         for(int i=0;i<t1.col;++i)
+         {
+             A[i]=null;
+         }
+        admin.add_row_dynamically(b, A,t1.col);
         System.out.println(a);
         String[] data=new String[2];
         int i=0;
@@ -345,7 +353,7 @@ public class admin_page extends javax.swing.JFrame {
         {
             System.out.println(e);
         }        
-        admin.add_row("USERS", data[0], data[1], "");
+        admin.add_row("USERS", data[0], data[1], "","");
         admin.delete("Pending_Requests",a);
         this.list_reset();
     }                                       
@@ -361,11 +369,31 @@ public class admin_page extends javax.swing.JFrame {
     private void create_tableActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
         int x=Integer.parseInt(jTextField1.getText());
+        this.setVisible(false);
+        this.dispose();
         new create_new_table(x);
     }                                            
 
     private void view_messageActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
+         try{
+                          conn= DriverManager.getConnection(conn_string+"/demodb", rootUsername, rootPassword);
+                          Statement st=(Statement)conn.createStatement();
+                          String a=jList2.getSelectedValue().toString();
+                          String sql ="Select * from Pending_Requests where Name='"+a+"';";
+                          ResultSet rs=st.executeQuery(sql);
+                          rs.next();
+                          
+                          String message=rs.getString(4);
+                     
+                          javax.swing.JOptionPane.showMessageDialog(getContentPane(),message);
+                    
+        }
+        catch(SQLException e)
+        {
+            System.out.println(e);
+        }        
+        
     }     
     
     private void  gobacktologin(java.awt.event.ActionEvent evt) {                                             

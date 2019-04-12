@@ -169,11 +169,14 @@ public class New_user_registration extends javax.swing.JFrame {
              String username=jTextField2.getText();
              String pass=String.valueOf(jPasswordField1.getPassword());
              Admin a=new Admin();
-             a.add_row(table, username, pass, name);
+             String message=jTextArea1.getText();
+             a.add_row(table, username, pass, name,message);
              javax.swing.JOptionPane.showMessageDialog(getContentPane(),"Your request has been submitted");
              this.setVisible(false);
              this.dispose();
              new login();
+             
+             
              
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -83,6 +83,12 @@ public class USER_GUI {
                 submit_buttonActionPerformed(evt);
             }
         });
+                
+                                     submit.back_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_buttonActionPerformed(evt);
+            }
+        });       
                 frame.add(submit);
                 frame.setSize(600, 400);
 		frame.setVisible(true);
@@ -112,16 +118,10 @@ public class USER_GUI {
                  {
                      String text=y[i].text.getText();
                      String col_name=y[i].jLabel1.getText();
-                     
-                     System.out.println(col_name+" "+text);
-
-                    
-                  String sql ="UPDATE Students SET "+col_name+"="+text+" where username= "+this.username+";";
-                   st=conn.prepareStatement(sql);
-                   st.executeUpdate();
-                   //System.out.println(rs);
-
-                    
+                     System.out.println(col_name+" "+text);    
+                     String sql ="UPDATE Students SET "+col_name+"='"+text+"' where username= '"+this.username+"';";
+                     st=conn.prepareStatement(sql);
+                     st.executeUpdate();
                  }
                  
 
@@ -133,7 +133,12 @@ public class USER_GUI {
          }
         
     } 
-
+  void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        new login();
+        frame.setVisible(false);
+    }  
+    
     public static void main(String args[])
     {
 

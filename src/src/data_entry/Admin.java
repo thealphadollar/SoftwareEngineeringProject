@@ -38,7 +38,7 @@ public class Admin {
                        System.out.println(e);
                     }
     }
-    void add_row(String table,String user,String pass,String nam)
+    void add_row(String table,String user,String pass,String nam,String msge)
     {
  
         try{
@@ -46,7 +46,7 @@ public class Admin {
                           Statement st=(Statement)conn.createStatement();
                           if(table=="Pending_Requests")
                           {
-                            String sql = "INSERT INTO "+table+"(Name,username,password)"+"VALUES('"+nam+"','"+user+"','"+pass+"');";
+                            String sql = "INSERT INTO "+table+"(Name,username,password,Message)"+"VALUES('"+nam+"','"+user+"','"+pass+"','"+msge+"');";
                             //System.out.println(sql);
                             int rs=st.executeUpdate(sql);
   
@@ -63,6 +63,45 @@ public class Admin {
             System.out.println(e);
         }
     }
+    void add_row_dynamically(String table,String A[],int number_of_rows)
+    {
+       
+        kanishk obj = new kanishk();
+        Connection con = null;
+        Table t=new Table(table);
+        PreparedStatement ps = null;
+
+    try
+    {
+        con = obj.getConnection();
+ 
+   
+        String query = "INSERT INTO " + table+ " " ;
+
+        String temp = "";  
+        int i;
+        String cols = "(";
+        String vals = "('";
+        for(i=0;i<number_of_rows-1;i++)
+        {
+            temp =t.Col_name[i];
+            cols = cols + temp + ",";
+            vals = vals + A[i] + "','";
+        }
+
+        temp =   t.Col_name[i];
+        cols = cols + temp + ")";
+        vals = vals + A[i] + "')";
+        query = query + cols + " values " + vals + ";";
+        System.out.println(query);
+         ps = con.prepareStatement(query);
+         ps.executeUpdate();
+         }
+         catch(Exception e)
+         {
+             System.out.println(e);
+         }
+  }
     Integer add_new(String table,String user,String pass)
     {
  
@@ -174,8 +213,14 @@ public class Admin {
     }
    public static void main(String args[])
     {
-        Admin admin=new Admin();
-        admin.add_row("Pending_Requests","user","pass","Shivam");
+       Admin admin=new Admin();
+       // admin.add_row("Pending_Requests","user","pass","Shivam");
+       String[] A=new String[5];
+       for(int i=0;i<5;++i)
+       {
+           A[i]="a";
+       }
+       admin.add_row_dynamically("Students",A,5);
     }
 
   

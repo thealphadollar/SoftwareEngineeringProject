@@ -22,6 +22,7 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
         this.setSize(500,360);
+        this.setVisible(true);
     }
         
     private String username;

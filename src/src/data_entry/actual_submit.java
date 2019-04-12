@@ -36,6 +36,7 @@ public class actual_submit extends javax.swing.JPanel {
         submit_button.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
         submit_button.setForeground(java.awt.Color.black);
         submit_button.setText("Submit");
+        
 
 
         back_button.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
@@ -71,7 +72,7 @@ public class actual_submit extends javax.swing.JPanel {
 
      void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-        new login();
+       
     }                                           
 
                                             

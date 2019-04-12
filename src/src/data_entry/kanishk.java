@@ -62,7 +62,7 @@ private String[] colName  = new String[20];
    String tableName = obj.getName();
    int col = obj.getCol();
    
-   String query = "CREATE TABLE IF NOT EXISTS `trial_schema." + tableName + "` (" ;/*+
+   String query = "CREATE TABLE IF NOT EXISTS `" + tableName + "` (" ;/*+
     "  `index` int(5) NOT NULL," +
     "  `station` int(5) NOT NULL," +
     "  PRIMARY KEY (`index`)," +

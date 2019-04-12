@@ -20,7 +20,7 @@ public class create_new_table {
     smp_for_create_table top=new smp_for_create_table();
     create_middle[] middle=new create_middle[10];
    actual_submit submit=new actual_submit();
-   
+   JFrame frame;
  public create_new_table(int cols) {
         this.number_of_rows=cols;
         initComponents();
@@ -31,7 +31,7 @@ public class create_new_table {
           {
             middle[i]=new create_middle();
           }
-         JFrame frame=new JFrame();
+         frame=new JFrame();
          Container contentPane = frame.getContentPane();
          contentPane.setLayout(new GridLayout(this.number_of_rows+3,1));
          header.jLabel1.setText("Create New Table");
@@ -45,6 +45,11 @@ public class create_new_table {
           submit.submit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submit_buttonActionPerformed(evt);
+            }
+        });
+                  submit.back_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_buttonActionPerformed(evt);
             }
         });
          frame.add(submit);
@@ -86,7 +91,7 @@ public class create_new_table {
    //String tableName = obj.getName();
   // int col = obj.getCol();
    
-    String query = "CREATE TABLE IF NOT EXISTS `demodb." + table+ "` (" ;/*+
+    String query = "CREATE TABLE IF NOT EXISTS `" + table+ "` (" ;/*+
     "  `index` int(5) NOT NULL," +
     "  `station` int(5) NOT NULL," +
     "  PRIMARY KEY (`index`)," +
@@ -117,6 +122,12 @@ public class create_new_table {
         {
              clean(con,ps);
         }*/ 
+     }
+     void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+         frame.setVisible(false);
+         frame.dispose();
+         new admin_page();
+         
      }
      public static void main(String args[])
      {
