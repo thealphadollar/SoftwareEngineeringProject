@@ -150,7 +150,7 @@ public class login extends javax.swing.JFrame {
         user_type.setForeground(java.awt.Color.black);
         user_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "User" }));
 
-        jButton1.setBackground(new java.awt.Color(52, 73, 94));
+        jButton1.setBackground(new java.awt.Color(36, 37, 42));
         jButton1.setFont(new java.awt.Font("Liberation Sans", 1, 12)); // NOI18N
         jButton1.setForeground(java.awt.Color.white);
         jButton1.setText("Submit");
@@ -269,7 +269,7 @@ public class login extends javax.swing.JFrame {
                     else
                     {
                          System.out.println("First login successful");
-                         USER_GUI frame=new USER_GUI();
+                         USER_GUI frame=new USER_GUI(username);
                          this.setVisible(false);
                          this.dispose();
                     }   
@@ -287,7 +287,7 @@ public class login extends javax.swing.JFrame {
                     else
                     {
                         System.out.println("First login successful");
-                        Admin_gui frame=new Admin_gui();
+                        new admin_page();
                         this.setVisible(false);
                         this.dispose();
                     }

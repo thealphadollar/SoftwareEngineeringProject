@@ -45,7 +45,7 @@ public class Table {
                      this.Col_name[i]=rsmd.getColumnName(i+1);
                      this.Data_type[i]=rsmd.getColumnTypeName(i+1);
                  }
-                 this.show();
+                // this.show();
                 
            }
         catch(Exception e)
